@@ -1,6 +1,6 @@
-# 🚀 Product Management System - Full-Stack DevOps Demo
+# 🚀 Product Management System - Local DevOps with Colima
 
-A complete end-to-end DevOps implementation showcasing modern cloud-native application development, containerization, orchestration, infrastructure as code, configuration management, and CI/CD pipelines.
+A complete end-to-end DevOps implementation for **local development** using Colima, showcasing modern cloud-native application development, containerization, orchestration, and CI/CD pipelines.
 
 ## 📋 Table of Contents
 

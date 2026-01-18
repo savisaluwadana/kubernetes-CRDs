@@ -1,4 +1,21 @@
-# Product Management DevOps - Quick Reference
+# Product Management - Local Development Quick Start
+
+## 🚀 Super Quick Start
+
+```bash
+# 1. Install prerequisites (first time only)
+./scripts/setup-local.sh
+
+# 2. Start Colima with Kubernetes
+colima start --kubernetes --cpu 4 --memory 8
+
+# 3. Deploy everything
+./scripts/deploy-local.sh
+
+# 4. Access the application
+kubectl port-forward svc/frontend-service 3000:80 -n product-management
+# Visit: http://localhost:3000
+```
 
 ## Quick Commands
 

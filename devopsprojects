@@ -1,0 +1,72 @@
+Project 1: "TubeLocal" (The Data & Storage Project)
+The Concept: A YouTube clone. Users upload videos, the system processes them (transcoding), and streams them back. The DevOps Challenge: Handling Object Storage (S3) and Background Jobs locally. Most tutorials ignore storage; this puts it front and center.
+
+The Application Stack:
+
+Frontend: React (Video Player).
+
+API Gateway: Node.js (Handles uploads).
+
+Worker: Python + FFmpeg (Converts video formats).
+
+Database: PostgreSQL (Metadata: Title, Author).
+
+Object Storage: MinIO (This is a local, S3-compatible server).
+
+Message Queue: RabbitMQ (To tell the worker "New video uploaded!").
+
+The DevOps Stack:
+
+Terraform: Use the minio provider to automatically create Buckets and IAM Policies (simulating AWS S3 setup).
+
+Kubernetes: Use Jobs (not Deployments) for the Python Transcoder. It spins up, processes video, and dies.
+
+Helm: Package the whole stack so one command (helm install tube) deploys DB, MinIO, Queue, and Apps.
+
+Project 2: "TradeFlow" (The Observability & Real-Time Project)
+The Concept: A Crypto/Stock trading dashboard. It simulates thousands of stock price updates per second. The DevOps Challenge: Monitoring and Scaling. How do you handle high-traffic WebSockets, and how do you visualize metrics when things break?
+
+The Application Stack:
+
+Frontend: Next.js (Real-time charts).
+
+Ingestor: Go (High-performance WebSocket server).
+
+Cache/PubSub: Redis (Broadcasts price updates).
+
+Time-Series DB: TimescaleDB or InfluxDB (Stores historical price data).
+
+The DevOps Stack:
+
+Load Testing: Use K6 (a load testing tool) to simulate 5,000 concurrent users.
+
+Auto-Scaling: Configure Kubernetes HPA (Horizontal Pod Autoscaler) to spawn more Go pods when CPU > 50%.
+
+Monitoring: Deploy the Prometheus & Grafana stack.
+
+Goal: Create a dashboard showing "Transactions Per Second" and "Redis Lag".
+
+Alerting: Set an alert to fire if error rate > 1%.
+
+Project 3: "GitOps-Shop" (The Deployment Strategy Project)
+The Concept: A simple E-commerce store (Inventory, Cart, UI). The DevOps Challenge: Zero-Downtime Deployment. The focus isn't the app; it's how you update it without the user noticing.
+
+The Application Stack:
+
+Microservices: 3 separate services (UI, Cart-API, Inventory-API).
+
+Database: MySQL.
+
+The DevOps Stack:
+
+GitOps: Use ArgoCD. You will not run kubectl apply. You will push to Git, and ArgoCD will sync the cluster.
+
+Canary Deployment: Use Argo Rollouts.
+
+Scenario: You release version 2.0.
+
+Action: Argo directs only 10% of traffic to v2.
+
+Check: If no errors after 1 minute, it scales to 100%. If errors occur, it automatically rolls back to v1.
+
+Secrets Management: Use Sealed Secrets or Vault to manage database passwords securely in Git.

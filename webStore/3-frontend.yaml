@@ -1,0 +1,7 @@
+apiVersion: infra.example.com/v1
+kind: Frontend
+metadata:
+  name: react-ui
+spec:
+  image: nginx:latest
+  connectToBackend: python-api # <--- Reference the object above

@@ -1,0 +1,6 @@
+apiVersion: database.example.com/v1
+kind: MySQL
+metadata:
+  name: project-alpha
+spec:
+  storage_size: 2Gi

@@ -1,0 +1,7 @@
+apiVersion: infra.example.com/v1
+kind: Backend
+metadata:
+  name: python-api
+spec:
+  image: python:3.9-slim
+  connectToDatabase: my-sql-db  # <--- Reference the object above

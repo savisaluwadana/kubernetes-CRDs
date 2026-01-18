@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-victim-app
+spec:
+  replicas: 3          # We want 3 pods so we can see one die and others survive
+  selector:
+    matchLabels:
+      app: nginx-target # <--- REMEMBER THIS LABEL
+  template:
+    metadata:
+      labels:
+        app: nginx-target
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest

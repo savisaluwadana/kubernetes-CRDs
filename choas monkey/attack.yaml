@@ -1,0 +1,6 @@
+apiVersion: ops.example.com/v1
+kind: ChaosMonkey
+metadata:
+  name: attack-1
+spec:
+  target_app_label: "nginx-target"  # Must match the label in Step 3
